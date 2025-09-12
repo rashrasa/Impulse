@@ -4,8 +4,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 17.13.35931.197
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "PhysicsSimulations", "PhysicsSimulations\PhysicsSimulations.vcxproj", "{5077EC80-E313-413C-9FA0-4032FA8E9D2B}"
-EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "PhysicsMath", "PhysicsMath\PhysicsMath.vcxitems", "{A53018D9-ECC8-44EA-8A6E-84BB2BE974DD}"
+	ProjectSection(ProjectDependencies) = postProject
+		{0974A627-8A8D-46A2-AF72-F5EFF029D18F} = {0974A627-8A8D-46A2-AF72-F5EFF029D18F}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "PhysicsEngine", "PhysicsEngine\PhysicsEngine.vcxproj", "{0974A627-8A8D-46A2-AF72-F5EFF029D18F}"
 EndProject
