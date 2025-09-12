@@ -6,12 +6,20 @@
 #include "entity.h"
 #include <iostream>
 
-struct World {
+class World {
+public:
 	std::vector<PhysicsEngine::Entity*> entities;
+
+	World() {
+
+	}
+
 	~World() {
-		for (auto element: entities) {
+		for (auto element : entities) {
 			delete element;
 		}
 		std::cout << "Destroyed World\n";
 	}
+
+
 };

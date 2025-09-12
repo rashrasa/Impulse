@@ -4,9 +4,10 @@
 #include <vector>
 
 namespace PhysicsEngine {
-	struct World {
+	class World {
+	public:
 		std::vector<PhysicsEngine::Entity*> entities;
-
+		World();
 		~World();
 	};
 }

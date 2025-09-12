@@ -15,3 +15,10 @@ Provides all the logic and data types needed to represent a world along with the
 ### PhysicsSimulations
 
 Makes use of the physics engine in a rendered world to demonstrate capabilities of the engine.
+
+## Development
+
+1. Clone repo
+2. Get dependencies by running `git submodule update --init --recursive`
+3. Open solution in Visual Studio
+4. Running will run `PhysicsSimulations/PhysicsSimulations.cpp:main`

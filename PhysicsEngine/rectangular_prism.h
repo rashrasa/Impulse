@@ -3,7 +3,7 @@
 #include <Eigen/Dense>
 
 namespace PhysicsEngine {
-	class Rectangle: public PhysicsEngine::Entity {
+	class RectangularPrism : public PhysicsEngine::Entity {
 	public:
 		Eigen::Vector3f position;
 		Eigen::Vector3f velocity;
@@ -11,8 +11,9 @@ namespace PhysicsEngine {
 
 		float length = 0;
 		float width = 0;
-		~Rectangle() override {
-			std::cout << "Destroying Rectangle";
-		}
+		float height = 0;
+		~RectangularPrism();
+
+		void tick(float ms);
 	};
 }
