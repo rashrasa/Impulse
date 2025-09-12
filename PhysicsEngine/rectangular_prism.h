@@ -12,8 +12,10 @@ namespace PhysicsEngine {
 		float length = 0;
 		float width = 0;
 		float height = 0;
-		~RectangularPrism();
 
-		void tick(float ms);
+		void tick(float ms) {};
+
+		RectangularPrism() = default;
+		~RectangularPrism() = default;
 	};
 }

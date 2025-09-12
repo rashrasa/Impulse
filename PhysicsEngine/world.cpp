@@ -12,13 +12,11 @@ public:
 	World() {
 
 	}
-
 	~World() {
 		for (auto element : entities) {
 			delete element;
 		}
 		std::cout << "Destroyed World\n";
 	}
-
 
 };
