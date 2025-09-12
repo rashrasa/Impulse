@@ -6,5 +6,7 @@
 namespace PhysicsEngine {
 	struct World {
 		std::vector<PhysicsEngine::Entity*> entities;
+
+		~World();
 	};
 }
