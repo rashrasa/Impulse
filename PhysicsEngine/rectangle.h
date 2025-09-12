@@ -9,7 +9,10 @@ namespace PhysicsEngine {
 		Eigen::Vector3f velocity;
 		Eigen::Vector3f acceleration;
 
-		float length;
-		float width;
+		float length = 0;
+		float width = 0;
+		~Rectangle() override {
+			std::cout << "Destroying Rectangle";
+		}
 	};
 }

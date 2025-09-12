@@ -17,4 +17,6 @@ int main() {
     std::cout << (*rectangle).position.x() << "\n";
 
     world.entities.push_back(rectangle);
+
+    delete rectangle;
 }
