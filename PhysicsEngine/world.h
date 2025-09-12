@@ -7,7 +7,7 @@ namespace PhysicsEngine {
 	class World {
 	public:
 		std::vector<PhysicsEngine::Entity*> entities;
-		World() = default;
-		~World() = default;
+		World();
+		~World();
 	};
 }

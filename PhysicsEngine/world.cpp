@@ -5,18 +5,13 @@
 #include "entity.h"
 #include <iostream>
 
-class World {
-public:
-	std::vector<PhysicsEngine::Entity*> entities;
+#include "world.h"
 
-	World() {
+namespace PhysicsEngine {
+	World::World() {
 
 	}
-	~World() {
-		for (auto element : entities) {
-			delete element;
-		}
+	World::~World() {
 		std::cout << "Destroyed World\n";
 	}
-
-};
+}

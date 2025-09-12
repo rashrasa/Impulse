@@ -2,30 +2,33 @@
 #include "framework.h"
 
 #include <Eigen/Dense>
-#include "entity.h"
 #include <iostream>
 
+#include "rectangular_prism.h"
 
-class RectangularPrism : public PhysicsEngine::Entity {
-public:
-	Eigen::Vector3f position;
-	Eigen::Vector3f velocity;
-	Eigen::Vector3f acceleration;
-	float length;
-	float width;
-	float height;
-
-	void tick(float ms) {
+namespace PhysicsEngine {
+	void RectangularPrism::tick(float ms) {
 		// TODO
 	}
-
-	RectangularPrism() {
+	RectangularPrism::RectangularPrism() {
+		this->position << 0, 0, 0;
+		this->velocity << 0, 0, 0;
+		this->acceleration << 0, 0, 0;
 		this->height = 1;
 		this->length = 1;
 		this->width = 1;
 	}
-	~RectangularPrism() {
+	RectangularPrism::RectangularPrism(Eigen::Vector3f position) {
+		this->position = position;
+		this->velocity << 0, 0, 0;
+		this->acceleration << 0, 0, 0;
+		this->height = 1;
+		this->length = 1;
+		this->width = 1;
+	}
+	RectangularPrism::~RectangularPrism() {
 		std::cout << "Deleted object\n";
 	}
+}
 
-};
+

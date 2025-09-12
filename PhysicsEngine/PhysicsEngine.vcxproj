@@ -144,7 +144,6 @@
     <ClInclude Include="world.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="entity.cpp" />
     <ClCompile Include="rectangular_prism.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>

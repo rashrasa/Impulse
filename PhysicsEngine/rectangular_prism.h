@@ -1,5 +1,6 @@
 #pragma once
 
+#include "entity.h"
 #include <Eigen/Dense>
 
 namespace PhysicsEngine {
@@ -9,13 +10,14 @@ namespace PhysicsEngine {
 		Eigen::Vector3f velocity;
 		Eigen::Vector3f acceleration;
 
-		float length = 0;
-		float width = 0;
-		float height = 0;
+		float length;
+		float width;
+		float height;
 
-		void tick(float ms) {};
-
-		RectangularPrism() = default;
-		~RectangularPrism() = default;
+		void tick(float ms);
+		
+		RectangularPrism();
+		RectangularPrism(Eigen::Vector3f position);
+		~RectangularPrism();
 	};
 }
