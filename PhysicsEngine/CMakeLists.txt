@@ -1,10 +1,10 @@
 add_library(PhysicsEngine STATIC)
 
-target_sources(
-    PhysicsEngine
-        PRIVATE
-            lib/pch.cpp
+file(GLOB_RECURSE ENGINE_SOURCES CONFIGURE_DEPENDS
+    ${CMAKE_CURRENT_SOURCE_DIR}/lib/*.cpp
 )
+
+target_sources(PhysicsEngine PRIVATE ${ENGINE_SOURCES})
 
 target_include_directories(
     PhysicsEngine
