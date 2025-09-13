@@ -429,3 +429,16 @@ FodyWeavers.xsd
 
 build/
 vcpkg_installed/
+
+CMakeFiles/
+CMakeCache.txt
+Makefile
+cmake_install.cmake
+*.user
+*.dir
+*.exe
+*.dll
+*.lib
+*.a
+*.pdb
+*.obj
