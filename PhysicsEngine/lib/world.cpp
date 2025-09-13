@@ -14,4 +14,9 @@ namespace PhysicsEngine {
 	World::~World() {
 		std::cout << "Destroyed World\n";
 	}
+	void World::tick(float ms) {
+		for (auto entity : this->entities) {
+			entity->tick(ms);
+		}
+	}
 }
