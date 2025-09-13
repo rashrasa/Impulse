@@ -1,6 +1,7 @@
 
 #include <iostream>
 #include "pch.h"
+#include "GLFW/glfw3.h"
 
 int main() {
 	PhysicsEngine::World world;
