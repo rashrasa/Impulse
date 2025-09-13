@@ -13,4 +13,7 @@ target_include_directories(
             ${CMAKE_CURRENT_SOURCE_DIR}/include
             ${CMAKE_CURRENT_SOURCE_DIR}/../eigen
             ${CMAKE_CURRENT_SOURCE_DIR}/../glfw
+            ${CMAKE_CURRENT_SOURCE_DIR}/glad
 )
+
+target_sources(PhysicsSimulations PRIVATE glad/glad.c)
