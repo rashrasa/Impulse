@@ -442,3 +442,6 @@ cmake_install.cmake
 *.a
 *.pdb
 *.obj
+x64/
+
+build*/
