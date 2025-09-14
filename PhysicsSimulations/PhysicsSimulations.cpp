@@ -1,8 +1,9 @@
+#include "glad/glad.h"
 #define GLFW_INCLUDE_NONE
+#include "GLFW/glfw3.h"
+
 #include <iostream>
 #include "pch.h"
-#include "glad/glad.h"
-#include "GLFW/glfw3.h"
 
 static void handle_error(int error, const char* description) {
 	std::cerr << "Error: " << description << std::endl;
