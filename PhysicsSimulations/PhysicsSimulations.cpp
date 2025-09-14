@@ -4,8 +4,16 @@
 #include "glad/glad.h"
 #include "GLFW/glfw3.h"
 
-static void error_callback(int error, const char* description) {
+static void handle_error(int error, const char* description) {
 	std::cerr << "Error: " << description << std::endl;
+}
+
+static void handle_key(GLFWwindow* window, int key, int scancode, int action, int mods) {
+
+}
+
+static void render(GLFWwindow* window, PhysicsEngine::World* world) {
+
 }
 
 int main() {
@@ -13,13 +21,19 @@ int main() {
 	if (!glfwInit()) {
 		throw "Could not initialize GLFW";
 	}
-	glfwSetErrorCallback(error_callback);
 	auto window = glfwCreateWindow(640, 480, "Physics Simulations", NULL, NULL);
 	if (!window) {
 		throw "Could not create window";
 	}
 	glfwMakeContextCurrent(window);
 	gladLoadGL();
+	glfwSetErrorCallback(handle_error);
+	glfwSetKeyCallback(window, handle_key);
+	int width, height;
+	glfwGetFramebufferSize(window, &width, &height);
+	glViewport(0, 0, width, height);
+	double start_time_seconds = glfwGetTime();
+
 	PhysicsEngine::World world;
 	PhysicsEngine::RectangularPrism rectangle;
 
@@ -34,7 +48,9 @@ int main() {
 
 	// Main event loop
 	while (!glfwWindowShouldClose(window)) {
-
+		render(window, &world);
+		glfwSwapBuffers(window);
+		glfwPollEvents();
 	}
 
 	// Dispose
