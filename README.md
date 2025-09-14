@@ -14,6 +14,14 @@ Makes use of the physics engine in a rendered world to demonstrate capabilities 
 
 ## Development
 
+### Install GLAD
+
+1. Download zip file from this [Pre-Configured URL](https://glad.dav1d.de/#language=c&specification=gl&api=gl%3D4.6&api=gles1%3D1.0&api=gles2%3D3.2&api=glsc2%3D2.0&profile=core&loader=on)
+2. Copy folders inside include directory into `./PhysicsSimulations/include/`
+3. Copy `glad.c` into `./PhysicsSimulations/glad/`
+
+### Setup
+
 1. Clone repo
 2. Get dependencies by running `git submodule update --init --recursive`
 3. Open solution in Visual Studio
