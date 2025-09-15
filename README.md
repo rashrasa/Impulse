@@ -24,5 +24,6 @@ Makes use of the physics engine in a rendered world to demonstrate capabilities 
 
 1. Clone repo
 2. Get dependencies by running `git submodule update --init --recursive`
-3. Open solution in Visual Studio
-4. Running will run `PhysicsSimulations/PhysicsSimulations.cpp:main`
+3. Open solution in VS Code
+4. Run `cmake -S . -G "MinGW Makefiles"` to generate build files for MinGW (Can be installed through this [tutorial](https://code.visualstudio.com/docs/cpp/config-mingw#_prerequisites))
+5. Running will compile and run `PhysicsSimulations/PhysicsSimulations.cpp:main`
