@@ -16,4 +16,10 @@ target_include_directories(
             ${CMAKE_CURRENT_SOURCE_DIR}/glad
 )
 
-target_sources(PhysicsSimulations PRIVATE glad/glad.c)
+file(GLOB_RECURSE APPLICATION_SOURCES CONFIGURE_DEPENDS
+    ${CMAKE_CURRENT_SOURCE_DIR}/lib/Graphics/*.cpp
+)
+
+target_sources(
+    PhysicsSimulations PRIVATE glad/glad.c ${APPLICATION_SOURCES}
+)
