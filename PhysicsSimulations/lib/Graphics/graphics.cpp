@@ -1,5 +1,9 @@
 #include "graphics.h"
 #include "shader.h"
+#include <iostream>
+#include <filesystem>
+
+static Eigen::IOFormat eigen_formatter(4, 0, " ", "\n", "|", "|", "", "", 32);
 
 static float timed_float(float phase) {
     return ((int)(glfwGetTime() * 1000.0 - phase * 1000.0) % 1000) / (1000.0);
@@ -15,39 +19,40 @@ namespace PhysicsGraphics {
     // May not be necessary
     GraphicsEngine::~GraphicsEngine() = default;
     void GraphicsEngine::initialize() {
-
         // TODO: Find a way to package shader with app
-        PhysicsGraphics::ShaderProgram mainShaderProgram("assets\\test.vert", "assets\\test.frag");
-        this->shaderPrograms["test"] = &mainShaderProgram;
+        this->shaderPrograms.insert(std::pair("test", new PhysicsGraphics::ShaderProgram("data/assets/test.vert", "data/assets/test.frag")));
+        std::cout << "Created shader" << std::endl;
 
         for (auto pair : this->shaderPrograms) {
+            std::cout << "Reading in shader" << std::endl;
             (*pair.second).initialize();
         }
+        std::cout << "Initialized shaders" << std::endl;
 
-        // Triangles
-        float vertices[] = {
-            -0.5f, -0.5f, 0.0f,
-            0.5f, -0.5f, 0.0f,
-            0.0f,  0.5f, 0.0f
-        };
-
-        glUseProgram(*((*this->shaderPrograms["test"]).getGLProgram()));
+        glUseProgram(*((*this->shaderPrograms.at("test")).getGLProgram()));
+        std::cout << "Set shader program" << std::endl;
 
         glGenVertexArrays(1, &VAO);
         glBindVertexArray(VAO);
+        std::cout << "Bound Vertex array" << std::endl;
 
         glGenBuffers(1, &VBO);
         glBindBuffer(GL_ARRAY_BUFFER, VBO);
-        glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_DYNAMIC_DRAW);
+        std::cout << "Bound buffer" << std::endl;
+
+        glBufferData(GL_ARRAY_BUFFER, this->world->entities[0]->getNumVertices(), this->world->entities[0]->getVertices(), GL_DYNAMIC_DRAW);
+
+        std::cout << "Set buffer data" << std::endl;
 
         glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
         glEnableVertexAttribArray(0);
+        std::cout << "Initialized graphics engine" << std::endl;
     }
     void GraphicsEngine::render() {
         glBindVertexArray(VAO);
         glClearColor(
             timed_float(0.1),
-            timed_float(0.9),
+            timed_float(0.4),
             timed_float(0.6),
             1.0f
         );
@@ -65,6 +70,8 @@ namespace PhysicsGraphics {
             double current_time_seconds = glfwGetTime();
 
             while ((current_time_seconds - start_time_ms) / (1.0 / RENDER_RATE) > renders) {
+                if (renders % 60 == 0)
+                    std::cout << "\n" << (this->world->entities[0]->model).format(eigen_formatter) << "\n" << std::endl;
                 render();
                 glfwSwapBuffers(window->getWindow());
                 renders++;
@@ -74,6 +81,7 @@ namespace PhysicsGraphics {
                 world->tick(1.0 / SIMULATION_STEP_RATE);
                 steps++;
             }
+
             glfwPollEvents();
         }
     }

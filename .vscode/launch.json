@@ -8,10 +8,10 @@
             "name": "(Windows) Launch",
             "type": "cppvsdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/PhysicsSimulations/PhysicsSimulations.exe",
+            "program": "PhysicsSimulations.exe",
             "args": [],
             "stopAtEntry": false,
-            "cwd": "${fileDirname}",
+            "cwd": "${workspaceFolder}/build_mingw/PhysicsSimulations/",
             "environment": [],
             "console": "externalTerminal",
             "preLaunchTask": "CMake: Build Root"

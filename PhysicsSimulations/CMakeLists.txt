@@ -20,6 +20,9 @@ file(GLOB_RECURSE APPLICATION_SOURCES CONFIGURE_DEPENDS
     ${CMAKE_CURRENT_SOURCE_DIR}/lib/Graphics/*.cpp
 )
 
+configure_file(${CMAKE_CURRENT_SOURCE_DIR}/assets/test.vert ${CMAKE_CURRENT_BINARY_DIR}/data/assets/test.vert COPYONLY)
+configure_file(${CMAKE_CURRENT_SOURCE_DIR}/assets/test.frag ${CMAKE_CURRENT_BINARY_DIR}/data/assets/test.frag COPYONLY)
+
 target_sources(
     PhysicsSimulations PRIVATE glad/glad.c ${APPLICATION_SOURCES}
 )
