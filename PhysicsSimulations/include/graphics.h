@@ -19,6 +19,7 @@ namespace PhysicsGraphics {
         bool initialized;
         unsigned int VAO;
         unsigned int VBO;
+        unsigned int EBO;
 
         // API
     public:

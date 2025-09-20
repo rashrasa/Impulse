@@ -12,10 +12,7 @@ namespace PhysicsEngine {
 
 		Eigen::Matrix4f model;
 		float vertices[8 * 3];
-		const unsigned int nVertices = 24;
-
-		float indices[8 * 3];
-		const unsigned int nIndices = 24;
+		unsigned int indices[6 * 2 * 3];
 
 		float length;
 		float width;
@@ -24,10 +21,9 @@ namespace PhysicsEngine {
 		void tick(float ms);
 
 		float* getVertices();
-		unsigned int getNumVertices();
+		unsigned int* getIndices();
 
-		float* getIndices();
-		unsigned int getNumIndices();
+		Eigen::Matrix4f* getModel();
 
 		RectangularPrism(Eigen::Vector3f position, float length, float width, float height);
 		~RectangularPrism();

@@ -15,7 +15,7 @@ namespace PhysicsEngine {
         float vertices[1];
         unsigned int nVertices;
 
-        float indices[1];
+        unsigned int indices[1];
         unsigned int nIndices;
 
         double radius;
@@ -26,9 +26,7 @@ namespace PhysicsEngine {
         void tick(float ms);
 
         float* getVertices();
-        unsigned int getNumVertices();
-
-        float* getIndices();
-        unsigned int getNumIndices();
+        unsigned int* getIndices();
+        Eigen::Matrix4f* getModel();
     };
 }

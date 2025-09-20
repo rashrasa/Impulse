@@ -18,15 +18,11 @@ namespace PhysicsEngine {
         return this->vertices;
     }
 
-    unsigned int Sphere::getNumVertices() {
-        return this->nVertices;
-    }
-
-    float* Sphere::getIndices() {
+    unsigned int* Sphere::getIndices() {
         return this->indices;
     }
-
-    unsigned int Sphere::getNumIndices() {
-        return this->nIndices;
+    Eigen::Matrix4f* Sphere::getModel() {
+        return &this->model;
     }
+
 }

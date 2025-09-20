@@ -3,7 +3,7 @@
 #include <iostream>
 #include <filesystem>
 
-static Eigen::IOFormat eigen_formatter(4, 0, " ", "\n", "|", "|", "", "", 32);
+static Eigen::IOFormat eigen_formatter(2, 0, " ", "\n", "|", "|", "", "", 32);
 
 static float timed_float(float phase) {
     return ((int)(glfwGetTime() * 1000.0 - phase * 1000.0) % 1000) / (1000.0);
@@ -23,7 +23,7 @@ namespace PhysicsGraphics {
         this->shaderPrograms.insert(std::pair("test", new PhysicsGraphics::ShaderProgram("data/assets/test.vert", "data/assets/test.frag")));
         std::cout << "Created shader" << std::endl;
 
-        for (auto pair : this->shaderPrograms) {
+        for (std::pair<const std::string, PhysicsGraphics::ShaderProgram*> pair : this->shaderPrograms) {
             std::cout << "Reading in shader" << std::endl;
             (*pair.second).initialize();
         }
@@ -40,9 +40,15 @@ namespace PhysicsGraphics {
         glBindBuffer(GL_ARRAY_BUFFER, VBO);
         std::cout << "Bound buffer" << std::endl;
 
-        glBufferData(GL_ARRAY_BUFFER, this->world->entities[0]->getNumVertices(), this->world->entities[0]->getVertices(), GL_DYNAMIC_DRAW);
-
+        float* vertices = this->world->entities[0]->getVertices();
+        glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_DYNAMIC_DRAW);
         std::cout << "Set buffer data" << std::endl;
+
+        glGenBuffers(1, &EBO);
+        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
+
+        unsigned int* indices = this->world->entities[0]->getIndices();
+        glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_DYNAMIC_DRAW);
 
         glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
         glEnableVertexAttribArray(0);
@@ -57,13 +63,12 @@ namespace PhysicsGraphics {
             1.0f
         );
         glClear(GL_COLOR_BUFFER_BIT);
-
-        glDrawArrays(GL_TRIANGLES, 0, 3);
+        glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
     }
     void GraphicsEngine::startEventLoop(PhysicsGraphics::Window* window) {
         double start_time_ms = glfwGetTime();
-        uint64_t renders = 0;
-        uint64_t steps = 0;
+        unsigned int renders = 0;
+        unsigned int steps = 0;
         const float RENDER_RATE = 60.0;
         const float SIMULATION_STEP_RATE = RENDER_RATE * 4.0;
         while (!glfwWindowShouldClose(window->getWindow())) {
@@ -71,14 +76,14 @@ namespace PhysicsGraphics {
 
             while ((current_time_seconds - start_time_ms) / (1.0 / RENDER_RATE) > renders) {
                 if (renders % 60 == 0)
-                    std::cout << "\n" << (this->world->entities[0]->model).format(eigen_formatter) << "\n" << std::endl;
+                    std::cout << "\n" << (*this->world->entities[0]->getModel()).format(eigen_formatter) << "\n" << std::endl;
                 render();
                 glfwSwapBuffers(window->getWindow());
                 renders++;
             }
 
             while ((current_time_seconds - start_time_ms) / (1.0 / SIMULATION_STEP_RATE) > steps) {
-                world->tick(1.0 / SIMULATION_STEP_RATE);
+                //world->tick(1.0 / SIMULATION_STEP_RATE);
                 steps++;
             }
 

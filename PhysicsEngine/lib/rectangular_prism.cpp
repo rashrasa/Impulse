@@ -18,6 +18,30 @@ namespace PhysicsEngine {
 			 width / 2.0f, height / 2.0f, -length / 2.0f, // right back bottom
 			 width / 2.0f, height / 2.0f,  length / 2.0f, // right back top
 			-width / 2.0f, height / 2.0f,  length / 2.0f, // left back top
+		}, indices{
+				// front
+				0, 1, 3,
+				1, 2, 3,
+
+				// right
+				1, 5, 2,
+				2, 5, 6,
+
+				// top
+				2, 6, 3,
+				3, 6, 7,
+
+				// left
+				3, 4, 0,
+				4, 7, 3,
+
+				// bottom
+				0, 1, 5,
+				0, 5, 4,
+
+				// back
+				7, 4, 5,
+				7, 5, 6,
 		} {
 		std::cout << "initializing rect" << std::endl;
 		this->position = position;
@@ -35,6 +59,11 @@ namespace PhysicsEngine {
 			0, 0, length, position.z(),
 			0, 0, 0, 1;
 		std::cout << this->model.format(Eigen::IOFormat(4, 0, " ", "\n", "|", "|", "", "", 32)) << std::endl;
+		std::cout << this->position.format(Eigen::IOFormat(4, 0, " ", "\n", "|", "|", "", "", 32)) << std::endl;
+
+		std::cout << this->vertices[0] << std::endl;
+		std::cout << this->indices[0] << std::endl;
+
 		this->updateModel();
 		std::cout << "updated model" << std::endl;
 	}
@@ -43,16 +72,16 @@ namespace PhysicsEngine {
 	}
 
 	void RectangularPrism::tick(float ms) {
-		this->velocity += this->acceleration * (ms / 1000.0);
-		this->position += this->velocity * (ms / 1000.0);
+		//this->velocity += this->acceleration * (ms / 1000.0);
+		//this->position += this->velocity * (ms / 1000.0);
 
-		this->updateModel();
+		//this->updateModel();
 	}
 
 	void RectangularPrism::updateModel() {
-		(this->model)(0, 3) = position.x();
-		(this->model)(1, 3) = position.y();
-		(this->model)(2, 3) = position.z();
+		(this->model)(0, 3) = position(0);
+		(this->model)(1, 3) = position(1);
+		(this->model)(2, 3) = position(2);
 	}
 
 	// Length of 
@@ -60,16 +89,12 @@ namespace PhysicsEngine {
 		return this->vertices;
 	}
 
-	unsigned int RectangularPrism::getNumVertices() {
-		return this->nVertices;
-	}
-
-	float* RectangularPrism::getIndices() {
+	unsigned int* RectangularPrism::getIndices() {
 		return this->indices;
 	}
 
-	unsigned int RectangularPrism::getNumIndices() {
-		return this->nIndices;
+	Eigen::Matrix4f* RectangularPrism::getModel() {
+		return &this->model;
 	}
 }
 
