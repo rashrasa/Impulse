@@ -1,10 +1,8 @@
 #include <vector>
 #include <iostream>
 
-#include "PhysicsEngine.h"
-#include "Framework.h"
-#include "Entity.h"
 #include "World.h"
+#include "Entity.h"
 
 namespace PhysicsEngine {
 	World::World() {

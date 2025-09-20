@@ -3,7 +3,6 @@
 
 #include "RectangularPrism.h"
 #include "PhysicsEngine.h"
-#include "Framework.h"
 
 namespace PhysicsEngine {
 	RectangularPrism::RectangularPrism(Eigen::Vector3f position, float length, float width, float height)

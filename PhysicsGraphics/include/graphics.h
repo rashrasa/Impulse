@@ -4,9 +4,10 @@
 #define GLFW_INCLUDE_NONE
 #include "GLFW/glfw3.h"
 
+#include <unordered_map>
+
 #include "Window.h"
 #include "Shader.h"
-#include <unordered_map>
 #include "World.h"
 
 namespace PhysicsGraphics {
