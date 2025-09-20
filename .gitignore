@@ -445,6 +445,6 @@ cmake_install.cmake
 x64/
 
 build*/
-PhysicsSimulations/glad/
-PhysicsSimulations/include/glad/
-PhysicsSimulations/include/KHR/
+PhysicsGraphics/glad/
+PhysicsGraphics/include/glad/
+PhysicsGraphics/include/KHR/

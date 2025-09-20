@@ -4,10 +4,10 @@
 #define GLFW_INCLUDE_NONE
 #include "GLFW/glfw3.h"
 
-#include "window.h"
-#include "shader.h"
+#include "Window.h"
+#include "Shader.h"
 #include <unordered_map>
-#include "world.h"
+#include "World.h"
 
 namespace PhysicsGraphics {
     class GraphicsEngine {
@@ -16,10 +16,11 @@ namespace PhysicsGraphics {
         PhysicsGraphics::Window* mainWindow;
         PhysicsEngine::World* world;
         std::unordered_map<std::string, PhysicsGraphics::ShaderProgram*> shaderPrograms;
-        bool initialized;
         unsigned int VAO;
         unsigned int VBO;
         unsigned int EBO;
+        Eigen::Matrix4f view;
+        Eigen::Matrix4f projection;
 
         // API
     public:

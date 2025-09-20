@@ -1,7 +1,7 @@
 #include <fstream>
-
-#include "shader.h"
 #include <iostream>
+
+#include "Shader.h"
 
 namespace PhysicsGraphics {
     ShaderProgram::ShaderProgram(std::string vertexShaderSourceFile, std::string fragmentShaderSourceFile) {
@@ -54,6 +54,15 @@ namespace PhysicsGraphics {
         glAttachShader(shaderProgram, vertexShader);
         glAttachShader(shaderProgram, fragmentShader);
         glLinkProgram(shaderProgram);
+
+        GLint success;
+        glGetProgramiv(shaderProgram, GL_LINK_STATUS, &success);
+        if (!success) {
+            char error[512];
+            glGetProgramInfoLog(shaderProgram, 512, nullptr, error);
+            std::cout << "Shader Compilation Error: " << std::endl;
+            throw std::runtime_error(error);
+        }
     }
     unsigned int* ShaderProgram::getGLProgram() {
         return &(this->shaderProgram);

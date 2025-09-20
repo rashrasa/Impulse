@@ -1,7 +1,8 @@
 #pragma once
 
-#include "entity.h"
 #include <vector>
+
+#include "Entity.h"
 
 namespace PhysicsEngine {
 	class World {

@@ -1,10 +1,9 @@
-#include "pch.h"
-#include "framework.h"
-
 #include <Eigen/Dense>
 #include <iostream>
 
-#include "rectangular_prism.h"
+#include "RectangularPrism.h"
+#include "PhysicsEngine.h"
+#include "Framework.h"
 
 namespace PhysicsEngine {
 	RectangularPrism::RectangularPrism(Eigen::Vector3f position, float length, float width, float height)
@@ -19,29 +18,12 @@ namespace PhysicsEngine {
 			 width / 2.0f, height / 2.0f,  length / 2.0f, // right back top
 			-width / 2.0f, height / 2.0f,  length / 2.0f, // left back top
 		}, indices{
-				// front
-				0, 1, 3,
-				1, 2, 3,
-
-				// right
-				1, 5, 2,
-				2, 5, 6,
-
-				// top
-				2, 6, 3,
-				3, 6, 7,
-
-				// left
-				3, 4, 0,
-				4, 7, 3,
-
-				// bottom
-				0, 1, 5,
-				0, 5, 4,
-
-				// back
-				7, 4, 5,
-				7, 5, 6,
+			0, 1, 2,	2, 3, 0, // front
+			1, 5, 6,	6, 2, 1, // right
+			2, 6, 7,	7, 3, 2, // top
+			4, 0, 3,	3, 7, 4, // left
+			0, 1, 5,	5, 4, 0, // bottom
+			5, 6, 7,	7, 4, 5, // back
 		} {
 		std::cout << "initializing rect" << std::endl;
 		this->position = position;
@@ -54,9 +36,9 @@ namespace PhysicsEngine {
 		std::cout << "initialized dimensions" << std::endl;
 		this->model = Eigen::Matrix4f();
 		(this->model) <<
-			width, 0, 0, position.x(),
-			0, height, 0, position.y(),
-			0, 0, length, position.z(),
+			1, 0, 0, position.x(),
+			0, 1, 0, position.y(),
+			0, 0, 1, position.z(),
 			0, 0, 0, 1;
 		std::cout << this->model.format(Eigen::IOFormat(4, 0, " ", "\n", "|", "|", "", "", 32)) << std::endl;
 		std::cout << this->position.format(Eigen::IOFormat(4, 0, " ", "\n", "|", "|", "", "", 32)) << std::endl;

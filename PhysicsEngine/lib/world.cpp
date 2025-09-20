@@ -1,11 +1,10 @@
-#include "pch.h"
-#include "framework.h"
-
 #include <vector>
-#include "entity.h"
 #include <iostream>
 
-#include "world.h"
+#include "PhysicsEngine.h"
+#include "Framework.h"
+#include "Entity.h"
+#include "World.h"
 
 namespace PhysicsEngine {
 	World::World() {

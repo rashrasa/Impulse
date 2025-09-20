@@ -1,5 +1,6 @@
 #pragma once
-#include "entity.h"
+
+#include "Entity.h"
 
 namespace PhysicsEngine {
     class Sphere : public PhysicsEngine::Entity {

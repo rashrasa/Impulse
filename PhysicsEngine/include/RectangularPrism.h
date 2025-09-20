@@ -1,7 +1,8 @@
 #pragma once
 
-#include "entity.h"
 #include <Eigen/Dense>
+
+#include "Entity.h"
 
 namespace PhysicsEngine {
 	class RectangularPrism : public PhysicsEngine::Entity {

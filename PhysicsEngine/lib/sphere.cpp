@@ -1,4 +1,4 @@
-#include "sphere.h"
+#include "Sphere.h"
 
 namespace PhysicsEngine {
     Sphere::Sphere(Eigen::Vector3f position, double radius) :vertices{ 0.0f } {

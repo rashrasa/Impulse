@@ -1,6 +1,6 @@
-#include "window.h"
 #include <iostream>
 
+#include "Window.h"
 
 static void handle_error(int error, const char* description) {
     std::cerr << "Error: " << description << std::endl;

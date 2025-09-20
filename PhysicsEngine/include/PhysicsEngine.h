@@ -8,9 +8,9 @@
 #define PCH_H
 
 // add headers that you want to pre-compile here
-#include "framework.h"
-#include "entity.h"
-#include "rectangular_prism.h"
-#include "world.h"
+#include "Framework.h"
+#include "Entity.h"
+#include "RectangularPrism.h"
+#include "World.h"
 
 #endif //PCH_H
