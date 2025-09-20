@@ -3,7 +3,7 @@
 #include <iostream>
 #include <filesystem>
 
-static Eigen::IOFormat eigen_formatter(2, 0, " ", "\n", "|", "|", "", "", 32);
+static Eigen::IOFormat eigen_formatter(10, 0, " ", "\n", "|", "|", "", "", 32);
 
 static float timed_float(float phase) {
     return ((int)(glfwGetTime() * 1000.0 - phase * 1000.0) % 1000) / (1000.0);
@@ -83,7 +83,7 @@ namespace PhysicsGraphics {
             }
 
             while ((current_time_seconds - start_time_ms) / (1.0 / SIMULATION_STEP_RATE) > steps) {
-                //world->tick(1.0 / SIMULATION_STEP_RATE);
+                world->tick(1000.0 / SIMULATION_STEP_RATE);
                 steps++;
             }
 

@@ -72,10 +72,10 @@ namespace PhysicsEngine {
 	}
 
 	void RectangularPrism::tick(float ms) {
-		//this->velocity += this->acceleration * (ms / 1000.0);
-		//this->position += this->velocity * (ms / 1000.0);
+		this->velocity += this->acceleration * (ms / 1000.0);
+		this->position += this->velocity * (ms / 1000.0);
 
-		//this->updateModel();
+		this->updateModel();
 	}
 
 	void RectangularPrism::updateModel() {

@@ -17,6 +17,7 @@ int main() {
 
 	// Function body
 	std::cout << "Initializing world" << std::endl;
+	rectangle->acceleration(0) = 9.0f;
 	world.entities.push_back(rectangle);
 
 	std::cout << "Initializing graphics engine" << std::endl;
