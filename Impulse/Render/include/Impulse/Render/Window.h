@@ -4,7 +4,7 @@
 #define GLFW_INCLUDE_NONE
 #include "GLFW/glfw3.h"
 
-namespace impulse::render {
+namespace Impulse::Render {
     class Window {
         // Declarations
     private:

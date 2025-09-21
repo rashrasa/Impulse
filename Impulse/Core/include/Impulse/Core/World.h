@@ -4,10 +4,10 @@
 
 #include "Entity.h"
 
-namespace impulse::core {
+namespace Impulse::Core {
 	class World {
 	public:
-		std::vector<impulse::core::Entity* > entities;
+		std::vector<Impulse::Core::Entity* > entities;
 		void tick(float ms);
 		World();
 		~World();

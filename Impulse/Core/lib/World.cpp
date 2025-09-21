@@ -4,7 +4,7 @@
 #include "Impulse/Core/World.h"
 #include "Impulse/Core/Entity.h"
 
-namespace impulse::core {
+namespace Impulse::Core {
 	World::World() {
 
 	}
@@ -12,7 +12,7 @@ namespace impulse::core {
 		std::cout << "Destroyed World\n";
 	}
 	void World::tick(float ms) {
-		for (impulse::core::Entity* entity : this->entities) {
+		for (Impulse::Core::Entity* entity : this->entities) {
 			entity->tick(ms);
 		}
 	}

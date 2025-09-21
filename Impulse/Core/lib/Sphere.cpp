@@ -1,6 +1,6 @@
 #include "Impulse/Core/Sphere.h"
 
-namespace impulse::core {
+namespace Impulse::Core {
     Sphere::Sphere(Eigen::Vector3f position, double radius) :vertices{ 0.0f } {
         this->radius = radius;
         this->position = position;

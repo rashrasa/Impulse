@@ -10,13 +10,13 @@
 #include "Impulse/Render/Shader.h"
 #include "Impulse/Core/Core.h"
 
-namespace impulse::render {
+namespace Impulse::Render {
     class GraphicsEngine {
         // Declarations
     private:
         Window* mainWindow;
-        impulse::core::World* world;
-        std::unordered_map<std::string, impulse::render::ShaderProgram*> shaderPrograms;
+        Impulse::Core::World* world;
+        std::unordered_map<std::string, Impulse::Render::ShaderProgram*> shaderPrograms;
         unsigned int VAO;
         unsigned int VBO;
         unsigned int EBO;
@@ -25,10 +25,10 @@ namespace impulse::render {
 
         // API
     public:
-        GraphicsEngine(impulse::core::World* world, impulse::render::Window* window);
+        GraphicsEngine(Impulse::Core::World* world, Impulse::Render::Window* window);
         ~GraphicsEngine();
         void initialize();
-        void startEventLoop(impulse::render::Window* window);
+        void startEventLoop(Impulse::Render::Window* window);
 
     private:
         void render();

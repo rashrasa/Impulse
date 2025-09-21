@@ -3,7 +3,7 @@
 
 #include "Impulse/Render/Shader.h"
 
-namespace impulse::render {
+namespace Impulse::Render {
     ShaderProgram::ShaderProgram(std::string vertexShaderSourceFile, std::string fragmentShaderSourceFile) {
         this->vertexShaderSourceFile = vertexShaderSourceFile;
         this->fragmentShaderSourceFile = fragmentShaderSourceFile;

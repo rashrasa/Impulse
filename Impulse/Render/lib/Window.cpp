@@ -8,11 +8,11 @@ static void handle_error(int error, const char* description) {
 
 static void handle_key(GLFWwindow* window, int key, int scancode, int action, int mods) {
     std::cout << "Pressed key " << key << std::endl;
-    impulse::render::Window* caller = static_cast<impulse::render::Window*>(glfwGetWindowUserPointer(window));
+    Impulse::Render::Window* caller = static_cast<Impulse::Render::Window*>(glfwGetWindowUserPointer(window));
 
 }
 
-namespace impulse::render {
+namespace Impulse::Render {
     Window::Window() = default;
     Window::~Window() {
         glfwDestroyWindow(window);

@@ -6,7 +6,7 @@
 
 #include <string>
 
-namespace impulse::render {
+namespace Impulse::Render {
     class ShaderProgram {
         // Declarations
     private:

@@ -3,7 +3,7 @@
 
 #include "Impulse/Core/RectangularPrism.h"
 
-namespace impulse::core {
+namespace Impulse::Core {
 	RectangularPrism::RectangularPrism(Eigen::Vector3f position, float length, float width, float height)
 		:vertices{
 			-width / 2.0f, -height / 2.0f, -length / 2.0f, // left front bottom

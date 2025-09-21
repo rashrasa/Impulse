@@ -2,7 +2,7 @@
 
 #include <Eigen/Dense>
 
-namespace impulse::core {
+namespace Impulse::Core {
 	class Entity {
 	private:
 	public:

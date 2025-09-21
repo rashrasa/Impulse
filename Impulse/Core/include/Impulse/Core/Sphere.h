@@ -2,8 +2,8 @@
 
 #include "Entity.h"
 
-namespace impulse::core {
-    class Sphere : public impulse::core::Entity {
+namespace Impulse::Core {
+    class Sphere : public Impulse::Core::Entity {
     private:
 
     public:

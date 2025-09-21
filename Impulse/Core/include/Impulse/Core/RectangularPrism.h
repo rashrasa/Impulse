@@ -4,8 +4,8 @@
 
 #include "Entity.h"
 
-namespace impulse::core {
-	class RectangularPrism : public impulse::core::Entity {
+namespace Impulse::Core {
+	class RectangularPrism : public Impulse::Core::Entity {
 	public:
 		Eigen::Vector3f position;
 		Eigen::Vector3f velocity;

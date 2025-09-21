@@ -11,8 +11,8 @@ static float timed_float(float phase) {
     return ((int)(glfwGetTime() * 1000.0 - phase * 1000.0) % 1000) / (1000.0);
 }
 
-namespace impulse::render {
-    GraphicsEngine::GraphicsEngine(impulse::core::World* world, impulse::render::Window* window) {
+namespace Impulse::Render {
+    GraphicsEngine::GraphicsEngine(Impulse::Core::World* world, Impulse::Render::Window* window) {
         this->shaderPrograms.clear();
         this->world = world;
         this->mainWindow = window;
@@ -39,10 +39,10 @@ namespace impulse::render {
     GraphicsEngine::~GraphicsEngine() = default;
     void GraphicsEngine::initialize() {
         // TODO: Find a way to package shader with app
-        this->shaderPrograms.insert(std::pair("test", new impulse::render::ShaderProgram("../data/assets/main.vert", "../data/assets/main.frag")));
+        this->shaderPrograms.insert(std::pair("test", new Impulse::Render::ShaderProgram("../data/assets/main.vert", "../data/assets/main.frag")));
         std::cout << "Created shader" << std::endl;
 
-        for (std::pair<const std::string, impulse::render::ShaderProgram*> pair : this->shaderPrograms) {
+        for (std::pair<const std::string, Impulse::Render::ShaderProgram*> pair : this->shaderPrograms) {
             std::cout << "Reading in shader" << std::endl;
             (*pair.second).initialize();
         }
@@ -99,7 +99,7 @@ namespace impulse::render {
         glClear(GL_COLOR_BUFFER_BIT);
         glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
     }
-    void GraphicsEngine::startEventLoop(impulse::render::Window* window) {
+    void GraphicsEngine::startEventLoop(Impulse::Render::Window* window) {
         double start_time_ms = glfwGetTime();
         unsigned int renders = 0;
         unsigned int steps = 0;
