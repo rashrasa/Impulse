@@ -17,20 +17,21 @@ namespace PhysicsGraphics {
         this->world = world;
         this->mainWindow = window;
 
+        // TODO: Fix and implement math abstraction
         float aspectRatio = 16.0 / 9.0;
-        float vFov = 3.1415926 * (89.999 / 180);
+        float hFov = 3.1415926 * (89.999 / 180);
         float far = 100.0;
         float near = 1.0;
 
         this->view <<
-            1.0f, 0.0f, 0.0f, -5.0f,
-            0.0f, 1.0f, 0.0f, -5.0f,
-            1.0f, 1.0f, 1.0f, -5.0f,
+            1.0f, 0.0f, 0.0f, 5.0f,
+            0.0f, 1.0f, 0.0f, 5.0f,
+            0.0f, 0.0f, 1.0f, 5.0f,
             0.0f, 0.0f, 0.0f, 1.0f;
 
         this->projection <<
-            1.0 / (aspectRatio * std::tan(vFov / 2.0)), 0, 0, 0,
-            0, 1.0 / (std::tan(vFov / 2.0)), 0, 0,
+            1.0 / (aspectRatio * std::tan(hFov / 2.0)), 0, 0, 0,
+            0, 1.0 / (std::tan(hFov / 2.0)), 0, 0,
             0, 0, -(far + near) / (far - near), -(2 * far * near) / (far - near),
             0, 0, -1, 0;
     }

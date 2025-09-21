@@ -8,6 +8,8 @@ static void handle_error(int error, const char* description) {
 
 static void handle_key(GLFWwindow* window, int key, int scancode, int action, int mods) {
     std::cout << "Pressed key " << key << std::endl;
+    PhysicsGraphics::Window* caller = static_cast<PhysicsGraphics::Window*>(glfwGetWindowUserPointer(window));
+
 }
 
 namespace PhysicsGraphics {
@@ -38,6 +40,8 @@ namespace PhysicsGraphics {
         int width, height;
         glfwGetFramebufferSize(window, &width, &height);
         glViewport(0, 0, width, height);
+
+        glfwSetWindowUserPointer(this->window, this);
     }
 
     GLFWwindow* Window::getWindow() {

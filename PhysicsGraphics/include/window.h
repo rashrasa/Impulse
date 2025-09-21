@@ -13,6 +13,7 @@ namespace PhysicsGraphics {
         bool visible = false;
 
         // API
+        // TODO: Implement ability to attach keyboard event callbacks 
     public:
         Window();
         ~Window();
