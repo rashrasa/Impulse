@@ -1,6 +1,6 @@
 # (WIP) Impulse
 
-A 2D physics engine for simulating collisions, gravity, momentum, forces, and more.
+A 3D physics engine for simulating collisions, gravity, momentum, forces, and more.
 
 ## Components
 
