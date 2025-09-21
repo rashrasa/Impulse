@@ -10,7 +10,7 @@ Essential library containing type definitions, logging, event system, utilities.
 
 ### (WIP) ImpulsePhysics
 
-Provides all the logic needed to represent a world along with the main time-step simulation function that advances the world state.
+Provides all the logic needed to simulate a world along with the main time-step simulation function that advances the world state.
 
 ### (WIP) ImpulseRender
 
