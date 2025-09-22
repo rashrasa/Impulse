@@ -37,5 +37,6 @@ Makes use of the physics engine in a rendered world to demonstrate capabilities 
 1. Clone repo
 2. Get dependencies by running `git submodule update --init --recursive`
 3. Open solution in VS Code
-4. Run `cmake -B build_mingw -G "MinGW Makefiles"` to generate build files for MinGW (Can be installed through this [tutorial](https://code.visualstudio.com/docs/cpp/config-mingw#_prerequisites))
-5. Running will compile and run `App/Main.cpp:main`
+4. Run `./build.sh` to generate and compile build files for the MinGW compiler (Can be installed through this [tutorial](https://code.visualstudio.com/docs/cpp/config-mingw#_prerequisites))
+5. Running through VS Code will compile (again) and run `App/Main.cpp:main`
+    - Alternatively, run `./build.sh` then run the executable (Windows: `build_mingw/App/App.exe`)
