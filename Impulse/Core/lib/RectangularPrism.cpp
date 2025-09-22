@@ -2,6 +2,7 @@
 #include <iostream>
 
 #include "Impulse/Core/RectangularPrism.h"
+#include "Impulse/Core/Macros.h"
 
 namespace Impulse::Core {
 	RectangularPrism::RectangularPrism(Eigen::Vector3f position, float length, float width, float height)
