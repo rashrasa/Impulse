@@ -16,4 +16,17 @@ namespace Impulse::Core {
 			entity->tick(ms);
 		}
 	}
+	void World::addEntity(Impulse::Core::Entity* entity) {
+		this->entities.push_back(entity);
+	}
+
+	float* World::getVertices(unsigned int index) {
+		return this->entities[index]->getVertices();
+	}
+	unsigned int* World::getIndices(unsigned int index) {
+		return this->entities[index]->getIndices();
+	}
+	Eigen::Matrix4f* World::getModel(unsigned int index) {
+		return this->entities[index]->getModel();
+	}
 }

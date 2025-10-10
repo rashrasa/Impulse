@@ -27,6 +27,11 @@ namespace Impulse::Render {
         vertSourceFile.close();
         std::cout << "Read vertex shader file" << std::endl;
 
+        vertexShader = glCreateShader(GL_VERTEX_SHADER);
+        glShaderSource(vertexShader, 1, &vertexShaderSource, NULL);
+        std::cout << "Set vertex shader" << std::endl;
+        glCompileShader(vertexShader);
+
         std::ifstream fragSourceFile(this->fragmentShaderSourceFile);
         int fragLength;
         fragSourceFile.seekg(0, std::ios::end);
@@ -40,13 +45,10 @@ namespace Impulse::Render {
         fragSourceFile.close();
         std::cout << "Read fragment shader file" << std::endl;
 
-        vertexShader = glCreateShader(GL_VERTEX_SHADER);
-        glShaderSource(vertexShader, 1, &vertexShaderSource, NULL);
-        std::cout << "Set vertex shader" << std::endl;
-
         fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
         glShaderSource(fragmentShader, 1, &fragmentShaderSource, NULL);
         std::cout << "Set fragment shader" << std::endl;
+        glCompileShader(fragmentShader);
 
         shaderProgram = glCreateProgram();
         std::cout << "Created shader program" << std::endl;
@@ -64,7 +66,7 @@ namespace Impulse::Render {
             throw std::runtime_error(error);
         }
     }
-    unsigned int* ShaderProgram::getGLProgram() {
-        return &(this->shaderProgram);
+    unsigned int ShaderProgram::getGLProgram() {
+        return this->shaderProgram;
     }
 }

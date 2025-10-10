@@ -23,6 +23,6 @@ namespace Impulse::Render {
         ShaderProgram(std::string vertexShaderSourceFile, std::string fragmentShaderSourceFile);
         ~ShaderProgram();
         void initialize();
-        unsigned int* getGLProgram();
+        unsigned int getGLProgram();
     };
 }

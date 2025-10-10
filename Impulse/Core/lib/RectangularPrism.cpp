@@ -57,6 +57,9 @@ namespace Impulse::Core {
 		this->position += this->velocity * (ms / 1000.0);
 
 		this->updateModel();
+		IM_ASSERT(this->model(0, 3) == this->position(0), "");
+		IM_ASSERT(this->model(1, 3) == this->position(1), "");
+		IM_ASSERT(this->model(2, 3) == this->position(2), "");
 	}
 
 	void RectangularPrism::updateModel() {

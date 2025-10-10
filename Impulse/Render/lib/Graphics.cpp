@@ -12,7 +12,7 @@ static float timed_float(float phase) {
 }
 
 namespace Impulse::Render {
-    GraphicsEngine::GraphicsEngine(Impulse::Core::World* world, Impulse::Render::Window* window) {
+    GraphicsEngine::GraphicsEngine(std::shared_ptr<Impulse::Core::World> world, std::shared_ptr<Impulse::Render::Window> window) {
         this->shaderPrograms.clear();
         this->world = world;
         this->mainWindow = window;
@@ -39,16 +39,18 @@ namespace Impulse::Render {
     GraphicsEngine::~GraphicsEngine() = default;
     void GraphicsEngine::initialize() {
         // TODO: Find a way to package shader with app
-        this->shaderPrograms.insert(std::pair("test", new Impulse::Render::ShaderProgram("../data/assets/main.vert", "../data/assets/main.frag")));
+        this->shaderPrograms.insert(std::pair("test", std::shared_ptr<Impulse::Render::ShaderProgram>(
+            new Impulse::Render::ShaderProgram("../data/assets/main.vert", "../data/assets/main.frag")
+        )));
         std::cout << "Created shader" << std::endl;
 
-        for (std::pair<const std::string, Impulse::Render::ShaderProgram*> pair : this->shaderPrograms) {
+        for (auto pair : this->shaderPrograms) {
             std::cout << "Reading in shader" << std::endl;
             (*pair.second).initialize();
         }
         std::cout << "Initialized shaders" << std::endl;
 
-        glUseProgram(*((*this->shaderPrograms.at("test")).getGLProgram()));
+        glUseProgram(((*this->shaderPrograms.at("test")).getGLProgram()));
         std::cout << "Set shader program" << std::endl;
 
         glGenVertexArrays(1, &VAO);
@@ -59,29 +61,29 @@ namespace Impulse::Render {
         glBindBuffer(GL_ARRAY_BUFFER, VBO);
         std::cout << "Bound buffer" << std::endl;
 
-        float* vertices = this->world->entities[0]->getVertices();
+        float* vertices = this->world->getVertices(0);
         glBufferData(GL_ARRAY_BUFFER, sizeof(vertices) * 24, vertices, GL_DYNAMIC_DRAW);
         std::cout << "Set buffer data" << std::endl;
 
         glGenBuffers(1, &EBO);
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
 
-        unsigned int* indices = this->world->entities[0]->getIndices();
+        unsigned int* indices = this->world->getIndices(0);
         glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices) * 36, indices, GL_DYNAMIC_DRAW);
 
         glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
         glEnableVertexAttribArray(0);
 
-        int modelLoc = glGetUniformLocation(*(*this->shaderPrograms["test"]).getGLProgram(), "model");
+        int modelLoc = glGetUniformLocation((*this->shaderPrograms["test"]).getGLProgram(), "model");
         if (modelLoc == -1) throw std::runtime_error("Could not get model uniform");
-        float* model = (*this->world->entities[0]->getModel()).data();
+        float* model = (*this->world->getModel(0)).data();
         glUniformMatrix4fv(modelLoc, 1, GL_FALSE, model);
 
-        int viewLoc = glGetUniformLocation(*(*this->shaderPrograms["test"]).getGLProgram(), "view");
+        int viewLoc = glGetUniformLocation((*this->shaderPrograms["test"]).getGLProgram(), "view");
         if (modelLoc == -1) throw std::runtime_error("Could not get view uniform");
         glUniformMatrix4fv(viewLoc, 1, GL_FALSE, this->view.data());
 
-        int projectionLoc = glGetUniformLocation(*(*this->shaderPrograms["test"]).getGLProgram(), "projection");
+        int projectionLoc = glGetUniformLocation((*this->shaderPrograms["test"]).getGLProgram(), "projection");
         if (modelLoc == -1) throw std::runtime_error("Could not get projection uniform");
         glUniformMatrix4fv(projectionLoc, 1, GL_FALSE, this->projection.data());
 
@@ -99,18 +101,18 @@ namespace Impulse::Render {
         glClear(GL_COLOR_BUFFER_BIT);
         glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
     }
-    void GraphicsEngine::startEventLoop(Impulse::Render::Window* window) {
+    void GraphicsEngine::startEventLoop() {
         double start_time_ms = glfwGetTime();
         unsigned int renders = 0;
         unsigned int steps = 0;
         const float RENDER_RATE = 60.0;
         const float SIMULATION_STEP_RATE = RENDER_RATE * 4.0;
-        while (!glfwWindowShouldClose(window->getWindow())) {
+        while (!glfwWindowShouldClose(this->mainWindow->getWindow())) {
             double current_time_seconds = glfwGetTime();
 
             while ((current_time_seconds - start_time_ms) / (1.0 / RENDER_RATE) > renders) {
                 render();
-                glfwSwapBuffers(window->getWindow());
+                glfwSwapBuffers(this->mainWindow->getWindow());
                 renders++;
             }
 
